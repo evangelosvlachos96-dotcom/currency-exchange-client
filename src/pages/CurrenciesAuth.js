@@ -12,6 +12,7 @@ const CurrenciesAuth = (props) => {
   const [currencyDeleted, setCurrencyDeleted] = useState(false)
   const [currencyCreated, setCurrencyCreated] = useState(false)
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState('')
 
   let timeout
 
@@ -19,12 +20,15 @@ const CurrenciesAuth = (props) => {
     const role = props.user.userInfo?.role
     if (role !== 'superuser' && role !== 'admin') navigate('/')
     if (timeout) clearTimeout(timeout)
-    const fetchCurrencies = async () => {
-      const response = await getCurrencies()
-      setCurrencies(response.data)
-    }
     fetchCurrencies()
   }, [currencyDeleted, currencyCreated])
+
+  const fetchCurrencies = async () => {
+    setLoading('Loading...')
+    const response = await getCurrencies()
+    setCurrencies(response.data)
+    setLoading('')
+  }
 
   const handleSearch = async (query) => {
     try {
@@ -63,32 +67,36 @@ const CurrenciesAuth = (props) => {
         <Search onSearch={handleSearch} />
         {error && <p className='error no-margin'>{error}</p>}
         <div className='content flex'>
-          <div className='dashboard-wrapper flex justify-center'>
-            {currencies
-              ? currencies.map((currency) => {
-                  return (
-                    <div key={currency._id} className='card capitalize'>
-                      <p>name : {currency.name}</p>
-                      <p>symbol : {currency.symbol}</p>
-                      <p>code : {currency.code}</p>
-                      <button
-                        className='btn danger capitalize text-center'
-                        onClick={() => handleDeleteCurrency(currency._id)}
-                      >
-                        delete
-                      </button>
-                      <Link
-                        to={`/currencies-auth/${currency._id}`}
-                        className='btn capitalize text-center low-margin-left'
-                      >
-                        update
-                      </Link>
-                    </div>
-                  )
-                })
-              : ''}
-            {result && <p className='info'>{result}</p>}
-          </div>
+          {!loading ? (
+            <div className='dashboard-wrapper flex justify-center'>
+              {currencies
+                ? currencies.map((currency) => {
+                    return (
+                      <div key={currency._id} className='card capitalize'>
+                        <p>name : {currency.name}</p>
+                        <p>symbol : {currency.symbol}</p>
+                        <p>code : {currency.code}</p>
+                        <button
+                          className='btn danger capitalize text-center'
+                          onClick={() => handleDeleteCurrency(currency._id)}
+                        >
+                          delete
+                        </button>
+                        <Link
+                          to={`/currencies-auth/${currency._id}`}
+                          className='btn capitalize text-center low-margin-left'
+                        >
+                          update
+                        </Link>
+                      </div>
+                    )
+                  })
+                : ''}
+              {result && <p className='info'>{result}</p>}
+            </div>
+          ) : (
+            <p className='text-center'>Loading...</p>
+          )}
           <CreateCurrency onCurrencyCreated={handleCurrencyCreated} />{' '}
         </div>
       </div>

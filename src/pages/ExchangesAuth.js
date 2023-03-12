@@ -14,6 +14,7 @@ const ExchangesAuth = (props) => {
   const [created, setCreated] = useState(false)
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState('')
+  const [loading, setLoading] = useState('')
 
   let timeout
 
@@ -27,9 +28,11 @@ const ExchangesAuth = (props) => {
   }, [exhangeDeleted, created, page])
 
   const fetchExchanges = async (page) => {
+    setLoading('Loading')
     const response = await getExchanges(page)
     setExchanges(response.data.exchanges)
     setTotalPages(response.data.totalPages)
+    setLoading('')
   }
 
   const handlePageChange = (page) => {
@@ -63,44 +66,52 @@ const ExchangesAuth = (props) => {
       <div className='wrapper flex justify-center align-center margin-auto min-height-500'>
         <div className='content flex'>
           <div className='dashboard-wrapper flex justify-center'>
-            {exchanges.map((exchange) => {
-              const { baseCurrency, targetCurrency, ratio } = exchange
-              return (
-                <div
-                  key={exchange._id}
-                  className='card capitalize h-240 flex justify-center'
-                >
-                  <p>
-                    base c. :{' '}
-                    <span className='information'>{baseCurrency.name}</span>
-                  </p>
-                  <p>
-                    target c. :{' '}
-                    <span className='information'>{targetCurrency.name}</span>
-                  </p>
-                  <p>
-                    ratio :{' '}
-                    <span className='information'>{ratio.toFixed(3)}</span>
-                  </p>
-                  <div className='buttons-container'>
-                    <button
-                      href='#'
-                      className='btn danger capitalize text-center'
-                      onClick={() => handleDeleteExchange(exchange._id)}
+            {!loading ? (
+              <>
+                {exchanges.map((exchange) => {
+                  const { baseCurrency, targetCurrency, ratio } = exchange
+                  return (
+                    <div
+                      key={exchange._id}
+                      className='card capitalize h-240 flex justify-center'
                     >
-                      delete
-                    </button>
-                    <Link
-                      to={`/exchange-auth/${exchange._id}`}
-                      className='btn capitalize text-center low-margin-left'
-                    >
-                      update
-                    </Link>
-                  </div>
-                </div>
-              )
-            })}
-            {result && <p className='info text-center'>{result}</p>}
+                      <p>
+                        base c. :{' '}
+                        <span className='information'>{baseCurrency.name}</span>
+                      </p>
+                      <p>
+                        target c. :{' '}
+                        <span className='information'>
+                          {targetCurrency.name}
+                        </span>
+                      </p>
+                      <p>
+                        ratio :{' '}
+                        <span className='information'>{ratio.toFixed(3)}</span>
+                      </p>
+                      <div className='buttons-container'>
+                        <button
+                          href='#'
+                          className='btn danger capitalize text-center'
+                          onClick={() => handleDeleteExchange(exchange._id)}
+                        >
+                          delete
+                        </button>
+                        <Link
+                          to={`/exchange-auth/${exchange._id}`}
+                          className='btn capitalize text-center low-margin-left'
+                        >
+                          update
+                        </Link>
+                      </div>
+                    </div>
+                  )
+                })}
+                {result && <p className='info text-center'>{result}</p>}
+              </>
+            ) : (
+              <p className='text-center'>Loading...</p>
+            )}{' '}
           </div>
           <CreateExchange onExchangeCreated={handleExchangeCreated} />{' '}
         </div>
