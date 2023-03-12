@@ -95,7 +95,7 @@ const CurrenciesAuth = (props) => {
               {result && <p className='info'>{result}</p>}
             </div>
           ) : (
-            <p className='text-center'>Loading...</p>
+            <p className='text-center'>{loading}</p>
           )}
           <CreateCurrency onCurrencyCreated={handleCurrencyCreated} />{' '}
         </div>

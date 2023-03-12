@@ -24,13 +24,13 @@ const Currencies = () => {
 
   const handleSearch = async (query) => {
     try {
-      setLoading('Loading')
+      setLoading('Searching...')
       if (error) setError('')
       const response = await searchCurr(query)
       setCurrencies(response.data)
       setLoading('')
     } catch (error) {
-      if (loading) setLoading('')
+      setLoading('')
       if (timeout) clearTimeout(timeout)
       setCurrencies('')
       setError(error.response.data.msg)
@@ -92,7 +92,7 @@ const Currencies = () => {
               : ''}
           </div>
         ) : (
-          <p className='text-center'>Loading....</p>
+          <p className='text-center'>{loading}</p>
         )}
       </div>
     </div>
