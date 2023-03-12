@@ -44,7 +44,7 @@ const Convert = ({ user }) => {
       setError(error.response.data.msg)
     }
   }
-
+  console.log(result)
   return (
     <div className='wrapper-in'>
       <h2 className='capitalize header flex justify-center align-center'>
@@ -103,7 +103,7 @@ const Convert = ({ user }) => {
             </span>
             {Number(result.amount) === 1 ? 'is' : 'are'}
             <span className='information low-margin-left'>
-              {result.converted_amount} {result.targer_currency}
+              {result.converted_amount} {result.target_currency}
             </span>
           </p>
         )}
