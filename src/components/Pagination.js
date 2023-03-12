@@ -3,7 +3,7 @@ import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa'
 
 const Pagination = ({ page, handlePageChange }) => {
   return (
-    <div className='pagination margin-auto text-center flex justify-center'>
+    <div className='pagination text-center flex justify-center'>
       <button
         onClick={() => handlePageChange(page - 1)}
         className='arrow low-margin-right flex align-center'

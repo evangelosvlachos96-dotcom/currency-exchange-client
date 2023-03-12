@@ -532,6 +532,7 @@ select {
 
 .pagination {
   width: 50%;
+  margin: 0.25rem auto;
 }
 
 .arrow {
@@ -559,8 +560,108 @@ select {
   min-height: 500px;
 }
 
+@media only screen and (max-width: 1600px) {
+  .exchange-wrapper {
+    width: 50%;
+  }
+
+  .container-center {
+    justify-content: center !important;
+  }
+
+  .dashboard-wrapper {
+    min-width: auto;
+    min-height: auto;
+  }
+}
+
 @media only screen and (max-width: 1000px) {
+  .content {
+    flex-wrap: wrap;
+  }
+
+  .dashboard-wrapper {
+    min-width: 100%;
+  }
+
   .currency-wrapper {
     width: 100%;
+  }
+
+  .exchange-wrapper {
+    min-width: 100%;
+  }
+
+  .small-input {
+    margin: 0.25rem;
+    width: 100%;
+  }
+
+  .btn {
+    margin-top: 0.25rem;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .covert-container {
+    flex-wrap: wrap;
+  }
+
+  .create-wrapper {
+    height: auto;
+    margin-top: 0.5rem;
+    min-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .header {
+    padding: 0 1rem;
+  }
+
+  .navbar {
+    width: 160px;
+    padding: 1rem;
+  }
+
+  .search-input {
+    margin-bottom: 0.33rem;
+  }
+
+  .container {
+    margin-top: 0.33rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .single-input {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    height: 100px;
+  }
+
+  .single-input input.form-input {
+    margin-bottom: 0 !important;
+  }
+  .card {
+    margin: 0.33rem 0 0;
+    min-width: 100%;
+  }
+
+  .main-exchange-information {
+    margin: 0.25rem;
+  }
+
+  .creator-wrapper p {
+    margin: 0.25rem;
+  }
+
+  .search-input {
+    min-width: 100%;
+  }
+
+  .information {
+    margin: 0.25rem;
   }
 }

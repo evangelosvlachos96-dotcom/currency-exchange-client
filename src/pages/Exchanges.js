@@ -39,7 +39,7 @@ const Exchanges = ({ user }) => {
       </h2>
       <div className='wrapper margin-auto'>
         {!loading ? (
-          <div className='container flex justify-space-between'>
+          <div className='container container-center flex justify-space-between'>
             {exchanges.map((exchange) => {
               const formattedDate = formatDate(exchange.updatedAt)
               const { _id, baseCurrency, targetCurrency, ratio, createdBy } =
