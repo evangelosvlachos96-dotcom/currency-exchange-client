@@ -34,7 +34,7 @@ const Currencies = () => {
       if (timeout) clearTimeout(timeout)
       setCurrencies('')
       setError(error.response.data.msg)
-      timeout = setTimeout(() => setError(''), 5000)
+      timeout = setTimeout(() => setError(''), 3500)
     }
   }
 

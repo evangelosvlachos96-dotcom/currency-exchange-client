@@ -53,7 +53,7 @@ const ExchangesAuth = (props) => {
       setResult(deleteRes.data.result) // set result state to message after deleting exchange
       timeout = setTimeout(() => {
         setResult('')
-      }, 5000)
+      }, 3500)
     } catch (error) {
       console.log(error)
     }

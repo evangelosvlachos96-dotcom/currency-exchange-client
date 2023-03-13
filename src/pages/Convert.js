@@ -40,7 +40,7 @@ const Convert = ({ user }) => {
       if (timeout) clearTimeout(timeout)
       timeout = setTimeout(() => {
         setError('')
-      }, 5000)
+      }, 3500)
       setError(error.response.data.msg)
     }
   }

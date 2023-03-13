@@ -38,7 +38,7 @@ const CurrenciesAuth = (props) => {
       if (timeout) clearTimeout(timeout)
       setCurrencies('')
       setError(error.response.data.msg)
-      timeout = setTimeout(() => setError(''), 5000)
+      timeout = setTimeout(() => setError(''), 3500)
     }
   }
 
@@ -52,7 +52,7 @@ const CurrenciesAuth = (props) => {
       setResult(deleteRes.data.result)
       timeout = setTimeout(() => {
         setResult('')
-      }, 5000)
+      }, 3500)
     } catch (error) {}
   }
 

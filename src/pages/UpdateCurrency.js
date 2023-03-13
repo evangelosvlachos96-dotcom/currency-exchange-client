@@ -35,12 +35,12 @@ const UpdateCurrency = (props) => {
       setUpdated(true)
       uTimeout = setTimeout(() => {
         setResult('')
-      }, 5000)
+      }, 3500)
     } catch (error) {
       setError(error.response.data.msg)
       eTimeout = setTimeout(() => {
         setError('')
-      }, 5000)
+      }, 3500)
     }
   }
 
