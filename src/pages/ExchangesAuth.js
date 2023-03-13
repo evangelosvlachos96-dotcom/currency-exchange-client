@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getExchanges, deleteExchange } from '../api'
@@ -10,7 +9,7 @@ const ExchangesAuth = (props) => {
   const navigate = useNavigate()
   const [exchanges, setExchanges] = useState([])
   const [exhangeDeleted, setExchangeDeleted] = useState(false)
-  const [result, setResult] = useState('')
+  const [result, setResult] = useState(false)
   const [created, setCreated] = useState(false)
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState('')
@@ -25,7 +24,7 @@ const ExchangesAuth = (props) => {
     try {
       fetchExchanges(page)
     } catch (error) {}
-  }, [exhangeDeleted, created, page])
+  }, [created, page])
 
   const fetchExchanges = async (page) => {
     setLoading('Loading')
@@ -36,9 +35,11 @@ const ExchangesAuth = (props) => {
   }
 
   const handlePageChange = (page) => {
+    setLoading('Loading')
     if (page > totalPages) setPage(1)
     else if (page < 1) setPage(totalPages)
     else setPage(page)
+    setLoading('')
   }
 
   const handleExchangeCreated = () => setCreated(!created)
@@ -46,10 +47,10 @@ const ExchangesAuth = (props) => {
   const handleDeleteExchange = async (id) => {
     try {
       const deleteRes = await deleteExchange(id)
-      const response = await getExchanges()
+      const response = await fetchExchanges(page)
       setExchanges(response.data)
-      setResult(deleteRes.data.result)
       setExchangeDeleted(true)
+      setResult(deleteRes.data.result) // set result state to message after deleting exchange
       timeout = setTimeout(() => {
         setResult('')
       }, 5000)

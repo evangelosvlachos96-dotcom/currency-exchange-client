@@ -9,7 +9,6 @@ const CurrenciesAuth = (props) => {
   const navigate = useNavigate()
   const [currencies, setCurrencies] = useState([])
   const [result, setResult] = useState('')
-  const [currencyDeleted, setCurrencyDeleted] = useState(false)
   const [currencyCreated, setCurrencyCreated] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState('')
@@ -21,7 +20,7 @@ const CurrenciesAuth = (props) => {
     if (role !== 'superuser' && role !== 'admin') navigate('/')
     if (timeout) clearTimeout(timeout)
     fetchCurrencies()
-  }, [currencyDeleted, currencyCreated])
+  }, [currencyCreated])
 
   const fetchCurrencies = async () => {
     setLoading('Loading...')
@@ -51,7 +50,6 @@ const CurrenciesAuth = (props) => {
       const response = await getCurrencies()
       setCurrencies(response.data)
       setResult(deleteRes.data.result)
-      setCurrencyDeleted(true)
       timeout = setTimeout(() => {
         setResult('')
       }, 5000)
