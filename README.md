@@ -1,11 +1,26 @@
-Currency-Exchange-React-App is a frontend application built using React.js that allows users to convert currencies in real-time. 
-It communicates with a server-side API to retrieve currency exchange rates.
+# Currency Exchange Client
 
-The user interface is simple and intuitive, featuring a dropdown menu for selecting the base currency and the target currency, 
-as well as an input field for the amount to be converted. The converted amount is displayed in real-time, without the need for refreshing the page.
+## Introduction
+Currency Exchange Client is a React-based web application designed for easy and efficient currency conversion. This client-side application allows users to check exchange rates and perform currency conversion in real-time.
 
-The application utilizes Axios, a promise-based HTTP client, to communicate with the server-side API. The API provides currency exchange rates
+## Features
+- Real-time currency exchange rate checks
+- Currency conversion between a wide range of currencies
+- User-friendly interface
+- Responsive design for desktop and mobile devices
 
-The project uses modern web development practices, including modular CSS and JSX syntax for creating React components. It also includes error handling to alert the user in case of incorrect input or failed API requests.
+## Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-Overall, Currency-Exchange-React-App is a straightforward and useful tool for users looking to convert currencies in real-time.
+### Prerequisites
+What things you need to install the software and how to install them:
+
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/) (usually comes with Node.js)
+
+### Installing
+A step-by-step series of examples that tell you how to get a development environment running:
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/StevenGKOR/currency-exchange-client.git
